@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Char Generator</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <Th>Ability</Th>
+            <Th>Score</Th>
+            <Th>Modifier</Th>
+        </tr>
+        <tr>
+            <td>Strength</td>
+            <Td id="str"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Intelegent</td>
+            <Td id="int"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Wisdom</td>
+            <Td id="wis"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Dexterity</td>
+            <Td id="dex"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Constitution</td>
+            <Td id="con"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Charisma</td>
+            <Td id="cha"></td>
+            <td></td>
+        </tr>
+
+    </table>
+
+    <input type="button" id="rollButton" value="ROLL" onclick="generate()">
+
+    <script>
+        let names = ["str","int","wis","dex","con","cha"]
+        let stats = [];
+
+        function generate(){
+            for(let i = 0; i < names.length; i++){
+                stats[i] = roll();
+
+                let element = document.getElementById(names[i]);
+                element.innerHTML = stats[i];
+
+                if(stats[i] < 10){
+                    element.setAttribute("style","background-color:red;");
+                }else if(stats[i] > 14){
+                    element.setAttribute("style","background-color:cyan;");
+                }else{
+                    element.setAttribute("style","background-color:green;");
+                }
+                modifier = Math.floor((stats[i] - 10) / 2);
+                let mod = element.nextElementSibling;
+                mod.innerHTML = modifier; 
+            }
+        }
+        function roll(){
+            diel = Math.floor(Math.random() * 6 + 1);
+            diel2 = Math.floor(Math.random() * 6 + 1);
+            diel3 = Math.floor(Math.random() * 6 + 1);
+            return diel + diel2 + diel3;
+        }
+    </script>
+</body>
+</html>
